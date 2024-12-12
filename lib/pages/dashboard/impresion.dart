@@ -57,7 +57,7 @@ class _ImpresionPageState extends State<ImpresionPage> {
       print("Column: ${column['name']} Type: ${column['type']}");
     }
   }
-
+  bool textEnabled = true;
   // Save mood entry to SQLite
   Future<void> _saveMoodEntry(BuildContext context) async {
     await _checkTableSchema();
@@ -68,6 +68,10 @@ class _ImpresionPageState extends State<ImpresionPage> {
       );
       return;
     }
+
+    setState(() {
+      textEnabled = false;
+    });
 
     await database.insert(
       'mood_entries',
@@ -85,6 +89,8 @@ class _ImpresionPageState extends State<ImpresionPage> {
 
     // Trigger callback to notify the parent widget
     widget.onSaveComplete?.call();
+    FocusScope.of(context).unfocus();
+
   }
 
   @override
@@ -170,6 +176,7 @@ class _ImpresionPageState extends State<ImpresionPage> {
                                       // Input field
                                       TextFormField(
                                         controller: _textController,
+                                        enabled: textEnabled,
                                         style: const TextStyle(
                                           fontSize: 20, // Set font size to 20
                                           color: Colors.black, // Optional: Text color

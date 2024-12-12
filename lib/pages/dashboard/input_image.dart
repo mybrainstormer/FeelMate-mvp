@@ -99,6 +99,9 @@ class _InputPageState extends State<InputPage> {
       fullResult
     );
     print("hello2");
+    Future.delayed(const Duration(milliseconds: 300),(){
+      FocusScope.of(context).unfocus();
+    });
 
 
   }
@@ -112,7 +115,7 @@ class _InputPageState extends State<InputPage> {
 
   @override
   Widget build(BuildContext context) {
-    FocusScope.of(context).unfocus();
+    // FocusScope.of(context).unfocus();
 
     return Scaffold(
       body: SafeArea(

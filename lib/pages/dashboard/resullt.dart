@@ -6,6 +6,7 @@ class ResultPage extends StatelessWidget {
 
   const ResultPage({super.key, required this.result});
 
+
   @override
   Widget build(BuildContext context) {
     // Check for null or empty response
@@ -42,7 +43,7 @@ class ResultPage extends StatelessWidget {
     final String emotion = data['emotion'] ?? 'Unknown';
     final List<dynamic> recommendations = data['recommendations'] ?? [];
 
-    FocusScope.of(context).unfocus();
+    // FocusScope.of(context).unfocus();
 
     return Scaffold(
       body: SafeArea(
